@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        icon="@drawable/ic_home_black_24dp"
+        id="@+id/tab_home"
+        title="@string/title_home"/>
+
+    <tab icon="@drawable/ic_dashboard_black_24dp"
+         id="@+id/tab_dashboard"
+         title="@string/title_dashboard"/>
+    <tab
+        id="@+id/tab_mycenter"
+        icon="@mipmap/ic_friends"
+        title="@string/title_mecenter" />
+</tabs>

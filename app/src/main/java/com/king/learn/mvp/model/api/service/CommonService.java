@@ -15,10 +15,17 @@
   */
 package com.king.learn.mvp.model.api.service;
 
+import com.king.learn.mvp.model.entity.GankEntity;
+
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
 /**
  * 存放通用的一些API
  */
 public interface CommonService
 {
-
+    @GET("api/data/{type}/{pageSize}/{page}")
+    Observable<GankEntity> gank(@Path("type") String type, @Path("pageSize") int pageSize, @Path("page") String page);
 }

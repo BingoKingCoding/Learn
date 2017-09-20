@@ -70,5 +70,11 @@ dependencies {
     debugCompile rootProject.ext.dependencies["canary-debug"]
     releaseCompile rootProject.ext.dependencies["canary-release"]
     testCompile rootProject.ext.dependencies["canary-release"]
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.roughike:bottom-bar:2.3.1' //底部导航
+    compile 'me.jessyan:arms:2.2.0' //使用Rxjava2
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+
+    compile 'org.greenrobot:greendao:3.2.2' // greenDao
+
+    compile 'me.yuqirong:cardswipelayout:1.0.0'//仿探探
 }
