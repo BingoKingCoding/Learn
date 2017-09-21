@@ -3,8 +3,9 @@ package com.king.learn.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.jess.arms.base.App;
 import com.jess.arms.base.delegate.AppLifecycles;
-import com.jess.arms.utils.ArmsUtils;
 import com.king.learn.BuildConfig;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -43,22 +44,30 @@ public class AppLifecyclesImpl implements AppLifecycles
 //                    });
             ButterKnife.setDebug(true);
         }
-        //leakCanary内存泄露检查
-        ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
         //扩展 AppManager 的远程遥控功能
-        ArmsUtils.obtainAppComponentFromContext(application).appManager().setHandleListener((appManager, message) ->
-        {
-            switch (message.what)
-            {
-                //case 0:
-                //do something ...
-                //   break;
-            }
-        });
+//        ArmsUtils.obtainAppComponentFromContext(application).appManager().setHandleListener((appManager, message) ->
+//        {
+//            switch (message.what)
+//            {
+//                //case 0:
+//                //do something ...
+//                //   break;
+//            }
+//        });
         //Usage:
         //Message msg = new Message();
         //msg.what = 0;
         //AppManager.post(msg); like EventBus
+
+        //leakCanary内存泄露检查
+        ((App) application).getAppComponent().extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
+        //ARouter初始化
+        if (BuildConfig.LOG_DEBUG) {
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(application); // 尽可能早，推荐在Application中初始化
+        GreenDaoHelper.initDatabase(application);
     }
 
     @Override

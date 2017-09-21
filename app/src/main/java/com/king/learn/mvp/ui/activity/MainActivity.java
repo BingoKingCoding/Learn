@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,15 +41,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView mToolbarTitle;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
-    @BindView(R.id.toolbar_back)
+//    @BindView(R.id.toolbar_back)
     RelativeLayout toolbarBack;
     private RxPermissions mRxPermissions;
     private List<Integer> mTitles;
     private List<Fragment> mFragments;
     private List<Integer> mNavIds;
     private int mReplace = 0;
-
-
 
     private OnTabSelectListener mOnTabSelectListener = tabId ->
     {
@@ -92,6 +91,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(Bundle savedInstanceState)
     {
+        toolbarBack = (RelativeLayout) findViewById(R.id.toolbar_back);
+        toolbarBack.setVisibility(View.GONE);
+        mPresenter.requestPermissions();
         if (mTitles == null)
         {
             mTitles = new ArrayList<>();
@@ -127,8 +129,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         {
             mFragments = new ArrayList<>();
             mFragments.add(homeFragment);
-            mFragments.add(welfareFragment);
-            mFragments.add(collectFragment);
+//            mFragments.add(welfareFragment);
+//            mFragments.add(collectFragment);
         }
         FragmentUtils.addFragments(getSupportFragmentManager(),mFragments,R.id.main_frame,0);
         mBottomBar.setOnTabSelectListener(mOnTabSelectListener);
