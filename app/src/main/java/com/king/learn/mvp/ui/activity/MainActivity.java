@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView mToolbarTitle;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
-//    @BindView(R.id.toolbar_back)
+    @BindView(R.id.toolbar_back)
     RelativeLayout toolbarBack;
     private RxPermissions mRxPermissions;
     private List<Integer> mTitles;
@@ -91,7 +91,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(Bundle savedInstanceState)
     {
-        toolbarBack = (RelativeLayout) findViewById(R.id.toolbar_back);
         toolbarBack.setVisibility(View.GONE);
         mPresenter.requestPermissions();
         if (mTitles == null)
