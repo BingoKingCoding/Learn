@@ -12,6 +12,7 @@ import com.jess.arms.http.RequestInterceptor;
 import com.jess.arms.integration.ConfigModule;
 import com.jess.arms.utils.ArmsUtils;
 import com.king.learn.BuildConfig;
+import com.king.learn.app.glide.GlideImageLoaderStrategy;
 import com.king.learn.mvp.model.api.Api;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -73,7 +74,8 @@ public class GlobalConfiguration implements ConfigModule
                 })
                 .rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
                     rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
-                });
+                })
+                .imageLoaderStrategy(new GlideImageLoaderStrategy());
 
 
     }

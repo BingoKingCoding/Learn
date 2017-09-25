@@ -1,6 +1,10 @@
 package com.king.learn.app;
 
 import android.app.Application;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.king.learn.app.greendao.DaoMaster;
+import com.king.learn.app.greendao.DaoSession;
 
 /**
  * <请描述这个类是干什么的>
@@ -9,10 +13,10 @@ import android.app.Application;
 
 public class GreenDaoHelper
 {
-//    private static DaoMaster.DevOpenHelper mHelper;
-//    private static SQLiteDatabase db;
-//    private static DaoMaster mDaoMaster;
-//    private static DaoSession mDaoSession;
+    private static DaoMaster.DevOpenHelper mHelper;
+    private static SQLiteDatabase db;
+    private static DaoMaster mDaoMaster;
+    private static DaoSession mDaoSession;
 
     /**
      * 初始化greenDao，这个操作建议在Application初始化的时候添加；
@@ -29,10 +33,10 @@ public class GreenDaoHelper
 //        mDaoMaster = new DaoMaster(db);
 //        mDaoSession = mDaoMaster.newSession();
     }
-//    public static DaoSession getDaoSession() {
-//        return mDaoSession;
-//    }
-//    public static SQLiteDatabase getDb() {
-//        return db;
-//    }
+    public static DaoSession getDaoSession() {
+        return mDaoSession;
+    }
+    public static SQLiteDatabase getDb() {
+        return db;
+    }
 }

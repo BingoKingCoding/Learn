@@ -1,10 +1,10 @@
 package com.king.learn.mvp.model.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Administrator on 2017/7/4.
@@ -40,8 +40,8 @@ public class DaoGankEntity
         public List<String> images;
         @Generated(hash = 1539280829)
         public DaoGankEntity(String _id, String createdAt, String desc, String publishedAt,
-                             String source, String type, String url, boolean used, String who,
-                             String addtime) {
+                String source, String type, String url, boolean used, String who,
+                String addtime) {
             this._id = _id;
             this.createdAt = createdAt;
             this.desc = desc;
