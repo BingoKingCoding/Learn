@@ -68,6 +68,7 @@ public class AppLifecyclesImpl implements AppLifecycles
         }
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
         GreenDaoHelper.initDatabase(application);
+        DDLibrary.getInstance().init(application);
     }
 
     @Override
