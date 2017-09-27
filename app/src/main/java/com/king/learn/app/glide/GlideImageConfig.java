@@ -4,7 +4,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.jess.arms.http.imageloader.ImageConfig;
-import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
 
 /**
  * <请描述这个类是干什么的>
@@ -129,6 +128,8 @@ public class GlideImageConfig extends ImageConfig
 
 
         public GlideImageConfig build() {
+            if (url == null) throw new IllegalStateException("url is required");
+            if (imageView == null) throw new IllegalStateException("imageview is required");
             return new GlideImageConfig(this);
         }
     }

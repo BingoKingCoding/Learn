@@ -128,8 +128,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         {
             mFragments = new ArrayList<>();
             mFragments.add(homeFragment);
-//            mFragments.add(welfareFragment);
-//            mFragments.add(collectFragment);
+            mFragments.add(welfareFragment);
+            mFragments.add(collectFragment);
         }
         FragmentUtils.addFragments(getSupportFragmentManager(),mFragments,R.id.main_frame,0);
         mBottomBar.setOnTabSelectListener(mOnTabSelectListener);

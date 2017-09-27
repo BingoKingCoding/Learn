@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lib_dialog_bg_button_normal">#FFFFFF</color>
+    <color name="lib_dialog_bg_button_pressed">#e5e5e5</color>
+    <color name="lib_dialog_confirm_text_cancel">#999999</color>
+    <color name="lib_dialog_confirm_text_confirm">#666666</color>
+    <color name="lib_dialog_confirm_text_content">#999999</color>
+    <color name="lib_dialog_confirm_text_title">#333333</color>
+    <color name="lib_dialog_menu_text_cancel">#666666</color>
+    <color name="lib_dialog_menu_text_item">#333333</color>
+    <color name="lib_dialog_menu_text_title">#999999</color>
+    <color name="lib_dialog_stroke">#e7e7f1</color>
+    <dimen name="lib_dialog_confirm_margin_bottom_content">15dp</dimen>
+    <dimen name="lib_dialog_confirm_margin_left_content">15dp</dimen>
+    <dimen name="lib_dialog_confirm_margin_right_content">15dp</dimen>
+    <dimen name="lib_dialog_confirm_margin_top_content">15dp</dimen>
+    <dimen name="lib_dialog_confirm_margin_top_title">15dp</dimen>
+    <dimen name="lib_dialog_confirm_text_cancel">13sp</dimen>
+    <dimen name="lib_dialog_confirm_text_confirm">13sp</dimen>
+    <dimen name="lib_dialog_confirm_text_content">12sp</dimen>
+    <dimen name="lib_dialog_confirm_text_title">16sp</dimen>
+    <dimen name="lib_dialog_corner_button">5dp</dimen>
+    <dimen name="lib_dialog_height_dialog_button">40dp</dimen>
+    <dimen name="lib_dialog_menu_height_cancel">40dp</dimen>
+    <dimen name="lib_dialog_menu_height_item">40dp</dimen>
+    <dimen name="lib_dialog_menu_height_title">40dp</dimen>
+    <dimen name="lib_dialog_menu_margin_top_cancel">10dp</dimen>
+    <dimen name="lib_dialog_menu_text_cancel">14sp</dimen>
+    <dimen name="lib_dialog_menu_text_item">14sp</dimen>
+    <dimen name="lib_dialog_menu_text_title">12sp</dimen>
+    <dimen name="lib_dialog_stroke">1px</dimen>
+    <!--<string name="app_name">lib</string>-->
+    <string name="lib_dialog_confirm_text_cancel">取消</string>
+    <string name="lib_dialog_confirm_text_confirm">确定</string>
+    <string name="lib_dialog_confirm_text_title">提示</string>
+    <string name="lib_dialog_menu_text_cancel">取消</string>
+    <string name="lib_dialog_progress_text_loading">加载中...</string>
+    <style name="libDialog.Anim.SlidingBottomBottom" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">
+            @anim/lib_dialog_dialog_enter_sliding_from_bottom
+        </item>
+        <item name="@android:windowExitAnimation">@anim/lib_dialog_dialog_exit_sliding_to_bottom
+        </item>
+    </style>
+    <style name="libDialog.Anim.SlidingTopTop" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/lib_dialog_dialog_enter_sliding_from_top
+        </item>
+        <item name="@android:windowExitAnimation">@anim/lib_dialog_dialog_exit_sliding_to_top</item>
+    </style>
+    <style name="libDialog.Confirm.Text.Cancel" parent="libDialog.Confirm.Text.Cancel.Base">
+        <item name="android:text">@string/lib_dialog_confirm_text_cancel</item>
+        <item name="android:textColor">@color/lib_dialog_confirm_text_cancel</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/lib_dialog_confirm_text_cancel</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Confirm.Text.Cancel.Base">
+    </style>
+    <style name="libDialog.Confirm.Text.Confirm" parent="libDialog.Confirm.Text.Confirm.Base">
+        <item name="android:textColor">@color/lib_dialog_confirm_text_confirm</item>
+        <item name="android:text">@string/lib_dialog_confirm_text_confirm</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/lib_dialog_confirm_text_confirm</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Confirm.Text.Confirm.Base">
+    </style>
+    <style name="libDialog.Confirm.Text.Content" parent="libDialog.Confirm.Text.Content.Base">
+        <item name="android:textColor">@color/lib_dialog_confirm_text_content</item>
+        <item name="android:textSize">@dimen/lib_dialog_confirm_text_content</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Confirm.Text.Content.Base">
+    </style>
+    <style name="libDialog.Confirm.Text.Title" parent="libDialog.Confirm.Text.Title.Base">
+        <item name="android:text">@string/lib_dialog_confirm_text_title</item>
+        <item name="android:textColor">@color/lib_dialog_confirm_text_title</item>
+        <item name="android:textSize">@dimen/lib_dialog_confirm_text_title</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Confirm.Text.Title.Base">
+    </style>
+    <style name="libDialog.Dialog" parent="libDialog.Dialog.Base">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="libDialog.Dialog.Base" parent="@android:style/Theme.DeviceDefault.Dialog">
+    </style>
+    <style name="libDialog.Dialog.Dim" parent="libDialog.Dialog">
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="libDialog.Menu.Text.Cancel" parent="libDialog.Menu.Text.Cancel.Base">
+        <item name="android:text">@string/lib_dialog_menu_text_cancel</item>
+        <item name="android:textColor">@color/lib_dialog_menu_text_cancel</item>
+        <item name="android:textSize">@dimen/lib_dialog_menu_text_cancel</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Menu.Text.Cancel.Base">
+    </style>
+    <style name="libDialog.Menu.Text.Item" parent="libDialog.Menu.Text.Item.Base">
+        <item name="android:textColor">@color/lib_dialog_menu_text_item</item>
+        <item name="android:textSize">@dimen/lib_dialog_menu_text_item</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Menu.Text.Item.Base">
+    </style>
+    <style name="libDialog.Menu.Text.Title" parent="libDialog.Menu.Text.Title.Base">
+        <item name="android:textColor">@color/lib_dialog_menu_text_title</item>
+        <item name="android:textSize">@dimen/lib_dialog_menu_text_title</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="libDialog.Menu.Text.Title.Base">
+    </style>
+</resources>

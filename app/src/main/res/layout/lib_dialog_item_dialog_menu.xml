@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lib_dialog_sel_bg_menu_item"
+    android:minHeight="@dimen/lib_dialog_menu_height_item"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/libDialog.Menu.Text.Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+</FrameLayout>

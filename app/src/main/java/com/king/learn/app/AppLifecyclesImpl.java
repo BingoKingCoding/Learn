@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.Utils;
 import com.jess.arms.base.App;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.king.learn.BuildConfig;
@@ -69,6 +70,7 @@ public class AppLifecyclesImpl implements AppLifecycles
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
         GreenDaoHelper.initDatabase(application);
         DDLibrary.getInstance().init(application);
+        Utils.init(application);
     }
 
     @Override

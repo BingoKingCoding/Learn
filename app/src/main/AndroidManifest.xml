@@ -24,9 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.king.learn.app.GlobalConfiguration"
-            android:value="ConfigModule" />
+            android:value="ConfigModule"/>
+
+        <activity android:name=".mvp.ui.activity.mvp.ui.activity.CollectActivity">
+        </activity>
     </application>
 
 </manifest>
