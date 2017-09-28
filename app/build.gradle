@@ -105,4 +105,6 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2' // greenDao
     compile 'me.yuqirong:cardswipelayout:1.0.0'//仿探探
     compile 'com.blankj:utilcode:1.9.1'//工具类
+    compile 'com.afollestad.material-dialogs:core:0.9.4.7'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.7'
 }
