@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/dl_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/include_title"/>
-
-        <FrameLayout
-            android:id="@+id/main_frame"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </FrameLayout>
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
+    <include
+        android:id="@+id/include_app_bar_main"
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"
-        android:layout_gravity="bottom"
-        />
+        android:layout_height="match_parent"/>
 
-</LinearLayout>
+    <include
+        android:id="@+id/include_nav_header_main"
+        layout="@layout/nav_header_main"
+        android:layout_marginTop="-27dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+
+
+</android.support.v4.widget.DrawerLayout>

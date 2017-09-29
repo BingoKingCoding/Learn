@@ -25,6 +25,9 @@
     <color name="C16">#3daba5</color>
     <color name="C17">#cccccc</color>
 
+    <!--item的分割线-->
+    <color name="colorLineItem">@color/C4</color>
+
     <color name="black">#000</color>
     <!--item的水波纹颜色-->
     <color name="itemBackgroundWhite">#cfff</color>
