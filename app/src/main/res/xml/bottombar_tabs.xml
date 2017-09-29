@@ -10,6 +10,6 @@
          title="@string/title_dashboard"/>
     <tab
         id="@+id/tab_mycenter"
-        icon="@mipmap/ic_friends"
+        icon="@drawable/ic_favorite_black_24dp"
         title="@string/title_mecenter" />
 </tabs>
