@@ -29,7 +29,7 @@
             android:name="com.king.learn.app.GlobalConfiguration"
             android:value="ConfigModule"/>
 
-        <activity android:name=".mvp.ui.activity.mvp.ui.activity.CollectActivity">
+        <activity android:name=".mvp.ui.activity.DetailActivity">
         </activity>
     </application>
 
