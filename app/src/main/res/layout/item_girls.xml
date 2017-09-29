@@ -10,6 +10,7 @@
 
     <FrameLayout
         android:id="@+id/vImageRoot"
+        android:background="@drawable/ripple_one_item_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

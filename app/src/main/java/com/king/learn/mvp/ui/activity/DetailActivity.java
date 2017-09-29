@@ -2,9 +2,12 @@ package com.king.learn.mvp.ui.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebResourceRequest;
@@ -15,11 +18,14 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
-import com.jess.arms.base.BaseActivity;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.king.learn.R;
-import com.king.learn.app.glide.GlideImageConfig;
+import com.king.learn.app.base.DDBaseActivity;
+import com.king.learn.app.utils.ColorUtils;
 import com.king.learn.di.component.DaggerDetailComponent;
 import com.king.learn.di.module.DetailModule;
 import com.king.learn.mvp.contract.DetailContract;
@@ -33,7 +39,7 @@ import static com.king.learn.app.ARouterPaths.MAIN_DETAIL;
 import static com.king.learn.app.EventBusTags.EXTRA_DETAIL;
 
 @Route(path = MAIN_DETAIL)
-public class DetailActivity extends BaseActivity<DetailPresenter> implements DetailContract.View
+public class DetailActivity extends DDBaseActivity<DetailPresenter> implements DetailContract.View
 {
 
     @BindView(R.id.imageView)
@@ -44,6 +50,8 @@ public class DetailActivity extends BaseActivity<DetailPresenter> implements Det
     WebView webview;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout clptoolbar;
     private GankEntity.ResultsBean entity;
     private boolean isFavorite;
 
@@ -71,8 +79,7 @@ public class DetailActivity extends BaseActivity<DetailPresenter> implements Det
         mPresenter.getGirl();
         mPresenter.getQuery(entity._id);
         if (toolbar != null) {
-                setSupportActionBar(toolbar);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                setToolBar(toolbar,entity.desc);
         }
 
         fab.setOnClickListener(v ->
@@ -143,12 +150,29 @@ public class DetailActivity extends BaseActivity<DetailPresenter> implements Det
     @Override
     public void setData(String url)
     {
-        ArmsUtils.obtainAppComponentFromContext(this).imageLoader().loadImage(this,
-                GlideImageConfig
-                        .builder()
-                        .url(url)
-                        .imageView(imageView)
-                        .build());
+//        ArmsUtils.obtainAppComponentFromContext(this).imageLoader().loadImage(this,
+//                GlideImageConfig
+//                        .builder()
+//                        .url(url)
+//                        .imageView(imageView)
+//                        .build());
+        Glide.with(this).asBitmap().load(url).into(new SimpleTarget<Bitmap>()
+        {
+            @Override
+            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition)
+            {
+                imageView.setImageBitmap(resource);
+                new Palette.Builder(resource).generate(palette ->
+                {
+                    Palette.Swatch swatch = ColorUtils.getMostPopulousSwatch(palette);
+                    if (swatch != null) {
+                        int color = swatch.getRgb();
+                        clptoolbar.setContentScrimColor(color);
+                        clptoolbar.setStatusBarScrimColor(ColorUtils.getStatusBarColor(color));
+                    }
+                });
+            }
+        });
     }
 
     @Override

@@ -3,8 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
 
+    <color name="red_wy">#ffce3d3a</color>
+
+    <color name="white">#FFFFFF</color>
     <color name="C1">#2dbc6d</color>
     <color name="C2">#FFFEFE</color>
     <color name="C3">#e2e2e2</color>
@@ -22,4 +24,16 @@
     <color name="C15">#f4504c</color>
     <color name="C16">#3daba5</color>
     <color name="C17">#cccccc</color>
+
+    <color name="black">#000</color>
+    <!--item的水波纹颜色-->
+    <color name="itemBackgroundWhite">#cfff</color>
+    <!--item的水波纹颜色-->
+    <color name="itemBackground">#DD7D7D7D</color>
+    <!--水波纹或5.0以下选择器颜色-->
+    <color name="tabBackground">#777D7D7D</color>
+    <!--item的5.0一下版本选择器颜色-->
+    <color name="itemLowBackground">#d9d9d9</color>
+    <!--页面背景的颜色-->
+    <color name="colorPageBg">#f2f4f5</color>
 </resources>

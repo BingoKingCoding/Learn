@@ -16,7 +16,9 @@ import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
 import com.king.learn.R;
+import com.king.learn.app.utils.DDResourcesUtil;
 import com.king.learn.app.utils.FragmentUtils;
+import com.king.learn.app.utils.StatusBarUtil;
 import com.king.learn.di.component.DaggerMainComponent;
 import com.king.learn.di.module.MainModule;
 import com.king.learn.mvp.contract.MainContract;
@@ -91,6 +93,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(Bundle savedInstanceState)
     {
+        StatusBarUtil.setColor(this, DDResourcesUtil.getColor(R.color.colorPrimary));
         toolbarBack.setVisibility(View.GONE);
         mPresenter.requestPermissions();
         if (mTitles == null)
