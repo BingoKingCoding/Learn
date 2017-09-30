@@ -1,10 +1,10 @@
 package com.king.learn.mvp.model.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Administrator on 2017/7/4.
@@ -13,6 +13,31 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class DaoGankEntity
 {
+        /**
+         *
+         * greendao中的注解
+
+         (一) @Entity 定义实体
+         @nameInDb 在数据库中的名字，如不写则为实体中类名
+         @indexes 索引
+         @createInDb 是否创建表，默认为true,false时不创建
+         @schema 指定架构名称为实体
+         @active 无论是更新生成都刷新
+         (二) @Id
+         (三) @NotNull 不为null
+         (四) @Unique 唯一约束
+         (五) @ToMany 一对多
+         (六) @OrderBy 排序
+         (七) @ToOne 一对一
+         (八) @Transient 不存储在数据库中
+         (九) @generated 由greendao产生的构造函数或方法
+         *
+         *
+         *
+         *
+         */
+
+
         /**
          * _id : 595ad074421aa90ca3bb6a90
          * createdAt : 2017-07-04T07:17:08.609Z
@@ -116,6 +141,8 @@ public class DaoGankEntity
         public void setAddtime(String addtime) {
             this.addtime = addtime;
         }
+
+
 
 }
 

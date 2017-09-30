@@ -38,7 +38,10 @@
                 android:layout_marginLeft="@dimen/m5"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:textColor="@color/C5"
                 android:textSize="@dimen/f6"
                 tools:text="desc" />
