@@ -6,8 +6,11 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.http.imageloader.ImageLoader;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
-import com.king.learn.mvp.contract.MeiziContract;
+import com.king.learn.app.utils.CollectionUtil;
+import com.king.learn.app.utils.OkHttpDownloader;
+import com.king.learn.mvp.contract.PhotoViewContract;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -16,7 +19,7 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 
 
 @ActivityScope
-public class MeiziPresenter extends BasePresenter<MeiziContract.Model, MeiziContract.View>
+public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, PhotoViewContract.View>
 {
     private RxErrorHandler mErrorHandler;
     private Application mApplication;
@@ -24,7 +27,7 @@ public class MeiziPresenter extends BasePresenter<MeiziContract.Model, MeiziCont
     private AppManager mAppManager;
 
     @Inject
-    public MeiziPresenter(MeiziContract.Model model, MeiziContract.View rootView
+    public PhotoViewPresenter(PhotoViewContract.Model model, PhotoViewContract.View rootView
             , RxErrorHandler handler, Application application
             , ImageLoader imageLoader, AppManager appManager)
     {
@@ -45,13 +48,23 @@ public class MeiziPresenter extends BasePresenter<MeiziContract.Model, MeiziCont
         this.mApplication = null;
     }
 
-    public void requestData(boolean b) {
-        mRootView.setAdapter(mModel.getEntity());
-        mRootView.endLoadMore();
-    }
+    public void savePic(ArrayList<String> listImageUrl, int selectPosition)
+    {
+        String url = CollectionUtil.get(listImageUrl, selectPosition);
+        mModel.savePic(url, new OkHttpDownloader.DownloadListener()
+        {
+            @Override
+            public void onSuccess()
+            {
+                mRootView.showMessage("图片保存成功");
+            }
 
-    public ArrayList<String> getImages(){
-        return mModel.getImages();
+            @Override
+            public void onFailure(IOException e)
+            {
+                mRootView.showMessage("图片保存失败");
+            }
+        });
     }
 
 }

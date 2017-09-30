@@ -6,7 +6,6 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.http.imageloader.ImageLoader;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.PermissionUtil;
 import com.king.learn.mvp.contract.MainContract;
 
 import javax.inject.Inject;
@@ -33,25 +32,6 @@ public class MainPresenter extends BasePresenter<MainContract.Model,MainContract
         this.mApplication = application;
         this.mImageLoader = imageLoader;
         this.mAppManager = appManager;
-    }
-
-    public void requestPermissions(){
-
-        PermissionUtil.requestPermission(new PermissionUtil.RequestPermission()
-        {
-            @Override
-            public void onRequestPermissionSuccess()
-            {
-                //request permission success, do something.
-            }
-
-            @Override
-            public void onRequestPermissionFailure()
-            {
-                mRootView.showMessage("Request permissons failure");
-            }
-        },mRootView.getRxPermissions(), mErrorHandler);
-
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.king.learn.mvp.model;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.EmptyUtils;
 import com.google.gson.Gson;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
@@ -12,6 +13,7 @@ import com.king.learn.app.utils.CategoryType;
 import com.king.learn.mvp.contract.MeiziContract;
 import com.king.learn.mvp.model.entity.DaoGankEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,13 +24,15 @@ public class MeiziModel extends BaseModel implements MeiziContract.Model
 {
     private Gson mGson;
     private Application mApplication;
-
+    private List<DaoGankEntity> mDaoGankEntityList;
+    private ArrayList<String> mImages;
     @Inject
     public MeiziModel(IRepositoryManager repositoryManager, Gson gson, Application application)
     {
         super(repositoryManager);
         this.mGson = gson;
         this.mApplication = application;
+        mImages = new ArrayList<>();
     }
 
     @Override
@@ -42,10 +46,26 @@ public class MeiziModel extends BaseModel implements MeiziContract.Model
     @Override
     public List<DaoGankEntity> getEntity()
     {
-        return GreenDaoHelper.getDaoSession().getDaoGankEntityDao()
+        mDaoGankEntityList = GreenDaoHelper.getDaoSession().getDaoGankEntityDao()
                 .queryBuilder()
                 .where(DaoGankEntityDao.Properties.Type.eq(CategoryType.GIRLS_STR))
                 .orderDesc(DaoGankEntityDao.Properties.Addtime)
                 .list();
+        return mDaoGankEntityList;
+    }
+
+    @Override
+    public ArrayList<String> getImages()
+    {
+        if (EmptyUtils.isNotEmpty(mDaoGankEntityList))
+        {
+            mImages.clear();
+            for (DaoGankEntity daoGankEntity : mDaoGankEntityList)
+            {
+                mImages.add(daoGankEntity.getUrl());
+            }
+            return mImages;
+        }
+        return new ArrayList<>();
     }
 }

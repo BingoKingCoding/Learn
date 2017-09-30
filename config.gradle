@@ -41,7 +41,7 @@ ext {
                 "glide"                    : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
                 "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
                 "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
-                "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
+                "retrofit-url-manager"     : "me.jessyan:retrofit-url-manager:1.1.0",
 
                 //view
                 "autolayout"               : "com.zhy:autolayout:1.4.5",

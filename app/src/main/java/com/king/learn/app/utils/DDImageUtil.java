@@ -1,9 +1,6 @@
 package com.king.learn.app.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -15,8 +12,6 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -26,6 +21,7 @@ import android.text.TextUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 /**
  * <请描述这个类是干什么的>
@@ -63,29 +59,18 @@ public class DDImageUtil
         }
     }
 
+
+    public static Drawable InputStream2Drawable(InputStream is)
+    {
+        Drawable drawable = BitmapDrawable.createFromStream(is, "splashImg");
+        return drawable;
+    }
+
     @SuppressWarnings("deprecation")
     public static Drawable Bitmap2Drawable(Bitmap bitmap)
     {
         BitmapDrawable bd = new BitmapDrawable(bitmap);
         return bd;
-    }
-
-    @SuppressWarnings("deprecation")
-    public static String getImageFilePathFromIntent(Intent intent, Activity activity)
-    {
-        if (intent != null && activity != null)
-        {
-            Uri uri = intent.getData();
-            String[] projection = {MediaStore.Images.Media.DATA};
-            Cursor cursor = activity.managedQuery(uri, projection, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String path = cursor.getString(column_index);
-            return path;
-        } else
-        {
-            return null;
-        }
     }
 
     public static byte[] compressImageFileToNewFileSize(File imageFile, int deltaQuality, long finalSize)
@@ -280,6 +265,8 @@ public class DDImageUtil
         }
         return false;
     }
+
+
 
     public static Bitmap getGrayBitmap(Bitmap bmp)
     {

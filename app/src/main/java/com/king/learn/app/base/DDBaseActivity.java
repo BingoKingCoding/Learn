@@ -5,12 +5,19 @@ import android.support.v7.widget.Toolbar;
 
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.mvp.IPresenter;
+import com.jess.arms.utils.ArmsUtils;
 
 /**
  */
 
 public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<P>
 {
+
+    /**
+     * 触摸返回键是否退出App
+     */
+    protected boolean mIsExitApp = false;
+    protected long mExitTime = 0;
 
     /**
      * 子类可以直接用
@@ -35,4 +42,27 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if (mIsExitApp)
+        {
+            exitApp();
+        } else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    public void exitApp()
+    {
+        if (System.currentTimeMillis() - mExitTime > 2000)
+        {
+            ArmsUtils.snackbarText("再按一次退出!");
+        } else
+        {
+            ArmsUtils.exitApp();
+        }
+        mExitTime = System.currentTimeMillis();
+    }
 }

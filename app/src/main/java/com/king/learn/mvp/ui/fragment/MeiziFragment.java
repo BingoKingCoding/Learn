@@ -22,6 +22,7 @@ import com.king.learn.di.module.MeiziModule;
 import com.king.learn.mvp.contract.MeiziContract;
 import com.king.learn.mvp.model.entity.DaoGankEntity;
 import com.king.learn.mvp.presenter.MeiziPresenter;
+import com.king.learn.mvp.ui.activity.PhotoViewActivity;
 import com.king.learn.mvp.ui.adapter.MeiziAdapter;
 import com.king.learn.mvp.ui.widget.SpacesItemDecoration;
 
@@ -81,6 +82,16 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements Meizi
         textView.setText("没有更多内容了");
         textView.setGravity(Gravity.CENTER);
         mAdapter.setEmptyView(textView);
+
+        mAdapter.setOnItemClickListener((adapter, view, position) ->
+        {
+            Intent intent = new Intent(getActivity(), PhotoViewActivity.class);
+            // 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
+
+            intent.putExtra(PhotoViewActivity.EXTRA_IMAGE_URLS, mPresenter.getImages());
+            intent.putExtra(PhotoViewActivity.EXTRA_POSITION, position);
+            getActivity().startActivity(intent);
+        });
 
         SpacesItemDecoration decoration=new SpacesItemDecoration(16);
         mRecyclerView.addItemDecoration(decoration);

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import me.jessyan.progressmanager.ProgressManager;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 /**
  * <请描述这个类是干什么的>
@@ -36,10 +37,6 @@ public class GlobalConfiguration implements ConfigModule
             builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
 
         builder.baseurl(Api.APP_DOMAIN)
-                //强烈建议自己自定义图片加载逻辑,因为默认提供的 GlideImageLoaderStrategy 并不能满足复杂的需求
-                //请参考 https://github.com/JessYanCoding/MVPArms/wiki#3.4
-//                .imageLoaderStrategy(new CustomLoaderStrategy())
-
                 //想支持多 BaseUrl,以及运行时动态切换任意一个 BaseUrl,请使用 https://github.com/JessYanCoding/RetrofitUrlManager
                 //如果 BaseUrl 在 App 启动时不能确定,需要请求服务器接口动态获取,请使用以下代码
                 //以下代码只是配置,还要使用 Okhttp (AppComponent中提供) 请求服务器获取到正确的 BaseUrl 后赋值给 GlobalConfiguration.sDomain
@@ -64,13 +61,16 @@ public class GlobalConfiguration implements ConfigModule
                 .retrofitConfiguration((context1, retrofitBuilder) -> {//这里可以自己自定义配置Retrofit的参数,甚至你可以替换系统配置好的okhttp对象
 //                    retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//比如使用fastjson替代gson
                 })
-                .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
+                .okhttpConfiguration((context1, okhttpBuilder) ->
+                {//这里可以自己自定义配置Okhttp的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https,详情请百度
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
+                    okhttpBuilder.readTimeout(20, TimeUnit.SECONDS);
                     //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听 详细使用方法查看 https://github.com/JessYanCoding/ProgressManager
                     ProgressManager.getInstance().with(okhttpBuilder);
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
-//                    RetrofitUrlManager.getInstance().with(okhttpBuilder);
+                    RetrofitUrlManager.getInstance().with(okhttpBuilder);
+
                 })
                 .rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
                     rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);

@@ -6,9 +6,18 @@ import com.google.gson.Gson;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
+import com.king.learn.app.utils.DDFileUtil;
 import com.king.learn.mvp.contract.SplashContract;
+import com.king.learn.mvp.model.api.Api;
+import com.king.learn.mvp.model.api.service.CommonService;
+import com.king.learn.mvp.model.entity.SplashEntity;
+
+import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 /**
  * <请描述这个类是干什么的>
@@ -30,11 +39,6 @@ public class SplashModel extends BaseModel implements SplashContract.Model
         this.mApplication = application;
     }
 
-    @Override
-    public void getSplash(String deviceId)
-    {
-
-    }
 
     @Override
     public void onDestroy()
@@ -42,5 +46,22 @@ public class SplashModel extends BaseModel implements SplashContract.Model
         super.onDestroy();
         this.mGson = null;
         this.mApplication = null;
+    }
+
+    @Override
+    public Observable<SplashEntity> requestSplash(String deviceId)
+    {
+        String client = "android";
+        String version = "1.3.0";
+        Long time = System.currentTimeMillis() / 1000;
+        RetrofitUrlManager.getInstance().putDomain("adimages", Api.ADURL);
+        return mRepositoryManager.obtainRetrofitService(CommonService.class)
+                .requestSplash(client,version,time,deviceId);
+    }
+
+    @Override
+    public List<String> getAllAD()
+    {
+        return DDFileUtil.getAllAD();
     }
 }

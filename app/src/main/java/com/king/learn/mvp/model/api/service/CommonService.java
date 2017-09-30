@@ -16,10 +16,13 @@
 package com.king.learn.mvp.model.api.service;
 
 import com.king.learn.mvp.model.entity.GankEntity;
+import com.king.learn.mvp.model.entity.SplashEntity;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * 存放通用的一些API
@@ -32,4 +35,9 @@ public interface CommonService
     // 随机获取一个妹子
     @GET("api/random/data/福利/1")
     Observable<GankEntity> getRandomGirl();
+    // 加上 Domain-Name header
+    @Headers({"Domain-Name: adimages"})
+    @GET("static/picture_list.txt")
+    Observable<SplashEntity> requestSplash(@Query("client") String client, @Query("version") String version, @Query("time") Long time, @Query("device_id") String deviceId);
+
 }

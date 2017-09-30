@@ -80,11 +80,13 @@ dependencies {
         exclude module: 'support-annotations'
     }
     compile rootProject.ext.dependencies["palette-v7"]
+    compile rootProject.ext.dependencies["retrofit-url-manager"]
     //tools
     provided rootProject.ext.dependencies["javax.annotation"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     compile rootProject.ext.dependencies["progressmanager"]
     //view
+    compile rootProject.ext.dependencies["photoview"]
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'
         exclude module: 'butterknife-annotations'
@@ -108,4 +110,5 @@ dependencies {
     compile 'com.blankj:utilcode:1.9.1'//工具类
     compile 'com.afollestad.material-dialogs:core:0.9.4.7'
     compile 'com.afollestad.material-dialogs:commons:0.9.4.7'
+    compile 'pub.devrel:easypermissions:1.0.1'
 }

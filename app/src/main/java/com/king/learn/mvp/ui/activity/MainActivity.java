@@ -11,11 +11,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
 import com.king.learn.R;
+import com.king.learn.app.base.DDBaseActivity;
 import com.king.learn.app.utils.FragmentUtils;
 import com.king.learn.di.component.DaggerMainComponent;
 import com.king.learn.di.module.MainModule;
@@ -26,7 +26,6 @@ import com.king.learn.mvp.ui.fragment.HomeFragment;
 import com.king.learn.mvp.ui.fragment.WelfareFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ import butterknife.BindView;
 
 import static com.king.learn.app.EventBusTags.ACTIVITY_FRAGMENT_REPLACE;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View
+public class MainActivity extends DDBaseActivity<MainPresenter> implements MainContract.View
 {
     @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
@@ -43,7 +42,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     BottomBar mBottomBar;
     @BindView(R.id.toolbar_back)
     RelativeLayout toolbarBack;
-    private RxPermissions mRxPermissions;
+
     private List<Integer> mTitles;
     private List<Fragment> mFragments;
     private List<Integer> mNavIds;
@@ -72,7 +71,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void setupActivityComponent(AppComponent appComponent)
     {
-        this.mRxPermissions = new RxPermissions(this);
         //如找不到该类,请编译一下项目
         DaggerMainComponent
                 .builder()
@@ -91,9 +89,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(Bundle savedInstanceState)
     {
+        mIsExitApp = true;
 //        StatusBarUtil.setColor(this, DDResourcesUtil.getColor(R.color.colorPrimary));
         toolbarBack.setVisibility(View.GONE);
-        mPresenter.requestPermissions();
         if (mTitles == null)
         {
             mTitles = new ArrayList<>();
@@ -136,11 +134,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mBottomBar.setOnTabSelectListener(mOnTabSelectListener);
     }
 
-    @Override
-    public RxPermissions getRxPermissions()
-    {
-        return mRxPermissions;
-    }
 
     @Override
     public void showLoading()
@@ -193,7 +186,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             e.printStackTrace();
         }
         super.onDestroy();
-        this.mRxPermissions = null;
         this.mTitles = null;
         this.mFragments = null;
         this.mNavIds = null;
