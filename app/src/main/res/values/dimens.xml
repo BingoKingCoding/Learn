@@ -43,4 +43,14 @@
 
     <!--分割线-->
     <dimen name="common_divider">1px</dimen>
+
+    <!--点赞按钮-->
+    <dimen name="height_icon_xs">12dp</dimen>
+    <dimen name="height_icon_s">18dp</dimen>
+    <dimen name="height_icon_m">24dp</dimen>
+    <dimen name="height_icon_l">36dp</dimen>
+    <dimen name="height_icon_xl">52dp</dimen>
+
+
+
 </resources>

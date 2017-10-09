@@ -24,7 +24,7 @@
     <color name="C15">#f4504c</color>
     <color name="C16">#3daba5</color>
     <color name="C17">#cccccc</color>
-
+    <color name="bg_translucence">#66000000</color>
     <!--item的分割线-->
     <color name="colorLineItem">@color/C4</color>
 
@@ -39,4 +39,11 @@
     <color name="itemLowBackground">#d9d9d9</color>
     <!--页面背景的颜色-->
     <color name="colorPageBg">#f2f4f5</color>
+
+
+    <!--自定义组件心形点赞按钮-->
+    <color name="spark_primary_color">#FFFFC107</color>
+    <color name="spark_secondary_color">#FFFF5722</color>
+    <color name="spark_image_tint">#00000000</color>
+
 </resources>

@@ -28,6 +28,7 @@ import com.king.learn.mvp.contract.WelfareContract;
 import com.king.learn.mvp.model.entity.GankEntity;
 import com.king.learn.mvp.presenter.WelfarePresenter;
 import com.king.learn.mvp.ui.adapter.WelfareAdapter;
+import com.king.learn.mvp.ui.widget.varunest.sparkbutton.SparkButton;
 
 import java.util.List;
 
@@ -53,6 +54,8 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements W
     RecyclerView mRecyclerView;
     @BindView(R.id.refreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.spark_button)
+    SparkButton mSparkButton;
 
     private WelfareAdapter mWelfareAdapter;
 
@@ -75,7 +78,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements W
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.layout_refresh_list,container,false);
+        return inflater.inflate(R.layout.fragment_welfare,container,false);
     }
 
     @Override
@@ -94,26 +97,24 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements W
     }
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
-    private void animatePhotoLike(View view) {
-        View ivLike = view.findViewById(R.id.ivLike);
-        ivLike.setVisibility(View.VISIBLE);
+    private void animatePhotoLike() {
 
-        ivLike.setScaleY(0.1f);
-        ivLike.setScaleX(0.1f);
+        mSparkButton.setScaleY(0.1f);
+        mSparkButton.setScaleX(0.1f);
 
         AnimatorSet animatorSet = new AnimatorSet();
 
-        ObjectAnimator imgScaleUpYAnim = ObjectAnimator.ofFloat(ivLike, "scaleY", 0.1f, 1f);
+        ObjectAnimator imgScaleUpYAnim = ObjectAnimator.ofFloat(mSparkButton, "scaleY", 0.1f, 1f);
         imgScaleUpYAnim.setDuration(300);
         imgScaleUpYAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
-        ObjectAnimator imgScaleUpXAnim = ObjectAnimator.ofFloat(ivLike, "scaleX", 0.1f, 1f);
+        ObjectAnimator imgScaleUpXAnim = ObjectAnimator.ofFloat(mSparkButton, "scaleX", 0.1f, 1f);
         imgScaleUpXAnim.setDuration(300);
         imgScaleUpXAnim.setInterpolator(DECCELERATE_INTERPOLATOR);
 
-        ObjectAnimator imgScaleDownYAnim = ObjectAnimator.ofFloat(ivLike, "scaleY", 1f, 0f);
+        ObjectAnimator imgScaleDownYAnim = ObjectAnimator.ofFloat(mSparkButton, "scaleY", 1f, 0f);
         imgScaleDownYAnim.setDuration(300);
         imgScaleDownYAnim.setInterpolator(ACCELERATE_INTERPOLATOR);
-        ObjectAnimator imgScaleDownXAnim = ObjectAnimator.ofFloat(ivLike, "scaleX", 1f, 0f);
+        ObjectAnimator imgScaleDownXAnim = ObjectAnimator.ofFloat(mSparkButton, "scaleX", 1f, 0f);
         imgScaleDownXAnim.setDuration(300);
         imgScaleDownXAnim.setInterpolator(ACCELERATE_INTERPOLATOR);
 
@@ -124,12 +125,12 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements W
     }
 
     private void collectWelfare(BaseQuickAdapter adapter, View view, int position) {
-        animatePhotoLike(view);
         GankEntity.ResultsBean entity = (GankEntity.ResultsBean) adapter.getItem(position);
         mPresenter.addToFavorites(entity);
     }
 
     private void collectWelfare(Object o) {
+        animatePhotoLike();
         GankEntity.ResultsBean entity = (GankEntity.ResultsBean)o;
         mPresenter.addToFavorites(entity);
     }
@@ -178,6 +179,7 @@ public class WelfareFragment extends BaseFragment<WelfarePresenter> implements W
                 mPresenter.requestData(false);
                 if(direction == CardConfig.SWIPED_RIGHT){
                     collectWelfare(o);
+
                 }
             }
 
