@@ -11,4 +11,14 @@
         <attr name="sparkbutton_activeImageTint" format="reference" />
         <attr name="sparkbutton_inActiveImageTint" format="reference" />
     </declare-styleable>
+    <declare-styleable name="SmileyLoadingView">
+        <!-- animation duration -->
+        <attr name="duration" format="integer"/>
+        <!-- stroke width -->
+        <attr name="strokeWidth" format="dimension"/>
+        <!-- stroke color -->
+        <attr name="strokeColor" format="color"/>
+        <!-- animation repeat count -->
+        <attr name="animRepeatCount" format="integer"/>
+    </declare-styleable>
 </resources>

@@ -33,8 +33,8 @@ public class GlobalConfiguration implements ConfigModule
     @Override
     public void applyOptions(Context context, GlobalConfigModule.Builder builder)
     {
-        if (!BuildConfig.LOG_DEBUG) //Release 时,让框架不再打印 Http 请求和响应的信息
-            builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
+        if (!BuildConfig.LOG_DEBUG){ //Release 时,让框架不再打印 Http 请求和响应的信息
+            builder.printHttpLogLevel(RequestInterceptor.Level.NONE);}
 
         builder.baseurl(Api.APP_DOMAIN)
                 //想支持多 BaseUrl,以及运行时动态切换任意一个 BaseUrl,请使用 https://github.com/JessYanCoding/RetrofitUrlManager

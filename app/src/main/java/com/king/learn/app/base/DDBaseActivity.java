@@ -65,4 +65,11 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
         }
         mExitTime = System.currentTimeMillis();
     }
+
+    protected void showLoadingDialog(){
+    }
+
+    protected void hideLoadingDialog(){
+    }
+
 }

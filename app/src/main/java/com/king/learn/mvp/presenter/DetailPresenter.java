@@ -56,8 +56,12 @@ public class DetailPresenter extends BasePresenter<DetailContract.Model, DetailC
         mModel.getRandomGirl()
                 .subscribeOn(Schedulers.io())
                 .retryWhen(new RetryWithDelay(3,2))
+//                .doOnSubscribe(disposable ->
+//                        mRootView.showLoading())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
+//                .doAfterTerminate(() ->
+//                        mRootView.hideLoading())
                 .compose(RxUtils.bindToLifecycle(mRootView))
                 .subscribe(new ErrorHandleSubscriber<GankEntity>(mErrorHandler)
                 {
