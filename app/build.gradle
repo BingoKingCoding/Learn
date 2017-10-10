@@ -111,4 +111,5 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.7'
     compile 'com.afollestad.material-dialogs:commons:0.9.4.7'
     compile 'pub.devrel:easypermissions:1.0.1'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }
