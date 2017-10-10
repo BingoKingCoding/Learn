@@ -9,7 +9,11 @@
          id="@+id/tab_dashboard"
          title="@string/title_dashboard"/>
     <tab
-        id="@+id/tab_mycenter"
         icon="@drawable/ic_favorite_black_24dp"
-        title="@string/title_mecenter" />
+        id="@+id/tab_myfavourite"
+        title="@string/title_favourite"/>
+    <tab
+        icon="@drawable/ic_person_black_24dp"
+        id="@+id/tab_mycenter"
+        title="@string/title_mecenter"/>
 </tabs>

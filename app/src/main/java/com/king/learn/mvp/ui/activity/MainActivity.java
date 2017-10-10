@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jess.arms.di.component.AppComponent;
@@ -23,6 +23,7 @@ import com.king.learn.mvp.contract.MainContract;
 import com.king.learn.mvp.presenter.MainPresenter;
 import com.king.learn.mvp.ui.fragment.CollectFragment;
 import com.king.learn.mvp.ui.fragment.HomeFragment;
+import com.king.learn.mvp.ui.fragment.UserCenterFragment;
 import com.king.learn.mvp.ui.fragment.WelfareFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.king.learn.app.EventBusTags.ACTIVITY_FRAGMENT_REPLACE;
 
@@ -40,9 +42,8 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
     TextView mToolbarTitle;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
-    @BindView(R.id.toolbar_back)
-    RelativeLayout toolbarBack;
-
+    @BindView(R.id.dl_layout)
+    DrawerLayout dlLayout;
     private List<Integer> mTitles;
     private List<Fragment> mFragments;
     private List<Integer> mNavIds;
@@ -58,8 +59,11 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
             case R.id.tab_dashboard:
                 mReplace = 1;
                 break;
-            case R.id.tab_mycenter:
+            case R.id.tab_myfavourite:
                 mReplace = 2;
+                break;
+            case R.id.tab_mycenter:
+                mReplace = 3;
                 break;
         }
         mToolbarTitle.setText(mTitles.get(mReplace));
@@ -67,6 +71,34 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
 
     };
 
+    @OnClick(R.id.fl_title_menu)
+    public void flTitleMenu() {
+        dlLayout.openDrawer(GravityCompat.START);
+    }
+    @OnClick(R.id.fl_exit_app)
+    public void exit() {
+        exitApp();
+    }
+
+    @OnClick(R.id.fl_feedback)
+    public void feedback() {
+//        startActivity(new Intent(this, FeedbackActivity.class));
+    }
+
+    @OnClick(R.id.fl_about_us)
+    public void aboutUs() {
+//        startActivity(new Intent(this, AboutUsActivity.class));
+    }
+
+    @OnClick(R.id.fl_setting)
+    public void setting() {
+        showMessage("设置暂时还没有开发哦");
+    }
+
+    @OnClick(R.id.fl_theme_color)
+    public void themeColor() {
+        showMessage("个性换肤暂时还没有开发");
+    }
 
     @Override
     public void setupActivityComponent(AppComponent appComponent)
@@ -91,12 +123,12 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
     {
         mIsExitApp = true;
 //        StatusBarUtil.setColor(this, DDResourcesUtil.getColor(R.color.colorPrimary));
-        toolbarBack.setVisibility(View.GONE);
         if (mTitles == null)
         {
             mTitles = new ArrayList<>();
             mTitles.add(R.string.title_home);
             mTitles.add(R.string.title_dashboard);
+            mTitles.add(R.string.title_favourite);
             mTitles.add(R.string.title_mecenter);
         }
         if (mNavIds == null)
@@ -104,23 +136,26 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
             mNavIds = new ArrayList<>();
             mNavIds.add(R.id.tab_home);
             mNavIds.add(R.id.tab_dashboard);
+            mNavIds.add(R.id.tab_myfavourite);
             mNavIds.add(R.id.tab_mycenter);
         }
         HomeFragment homeFragment;
         WelfareFragment welfareFragment;
         CollectFragment collectFragment;
-
+        UserCenterFragment userCenterFragment;
         if (savedInstanceState == null)
         {
             homeFragment = HomeFragment.newInstance();
             welfareFragment = WelfareFragment.newInstance();
             collectFragment = CollectFragment.newInstance();
+            userCenterFragment = UserCenterFragment.newInstance();
         }else {
             mReplace = savedInstanceState.getInt(ACTIVITY_FRAGMENT_REPLACE);
             FragmentManager fm = getSupportFragmentManager();
             homeFragment = (HomeFragment) FragmentUtils.findFragment(fm,HomeFragment.class);
             welfareFragment = (WelfareFragment) FragmentUtils.findFragment(fm,WelfareFragment.class);
             collectFragment = (CollectFragment) FragmentUtils.findFragment(fm,CollectFragment.class);
+            userCenterFragment = (UserCenterFragment) FragmentUtils.findFragment(fm,UserCenterFragment.class);
         }
 
         if (mFragments == null)
@@ -129,6 +164,7 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
             mFragments.add(homeFragment);
             mFragments.add(welfareFragment);
             mFragments.add(collectFragment);
+            mFragments.add(userCenterFragment);
         }
         FragmentUtils.addFragments(getSupportFragmentManager(),mFragments,R.id.main_frame,0);
         mBottomBar.setOnTabSelectListener(mOnTabSelectListener);
@@ -190,4 +226,15 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
         this.mFragments = null;
         this.mNavIds = null;
     }
+
+    @Override
+    public void onBackPressed() {
+        if (dlLayout.isDrawerOpen(GravityCompat.START)) {
+            dlLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
 }

@@ -27,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * <请描述这个类是干什么的>
+ * <首页>
  * Created by wwb on 2017/9/20 16:12.
  */
 

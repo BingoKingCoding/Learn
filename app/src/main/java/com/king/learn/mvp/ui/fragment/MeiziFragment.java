@@ -37,7 +37,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import static com.king.learn.R.id.recyclerView;
 
 /**
- * <请描述这个类是干什么的>
+ * <收藏页面福利>
  * Created by wwb on 2017/9/27 16:33.
  */
 

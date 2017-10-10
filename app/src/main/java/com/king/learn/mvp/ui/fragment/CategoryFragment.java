@@ -31,7 +31,7 @@ import static com.king.learn.app.ARouterPaths.MAIN_DETAIL;
 import static com.king.learn.app.EventBusTags.EXTRA_DETAIL;
 
 /**
- * <请描述这个类是干什么的>
+ * <首页文章列表页>
  * Created by wwb on 2017/9/20 17:19.
  */
 

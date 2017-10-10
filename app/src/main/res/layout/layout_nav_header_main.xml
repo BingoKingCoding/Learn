@@ -13,10 +13,10 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_haden"
+            android:id="@+id/ll_curry"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@mipmap/icon_curry"
+            android:background="@mipmap/ic_curry"
             android:orientation="vertical">
 
             <!--<Button-->
@@ -34,7 +34,7 @@
 
             <TextView
                 style="@style/home.textview"
-                android:drawableLeft="@drawable/theme_color"
+                android:drawableStart="@drawable/theme_color"
                 android:text="个性换肤" />
         </FrameLayout>
         <FrameLayout

@@ -39,9 +39,9 @@ public class CategoryItemHolder extends BaseHolder<GankEntity.ResultsBean>
         tvAuthor.setText(data.who);
         tvDesc.setText(data.desc);
         if (data.type.equals(CategoryType.ANDROID_STR)){
-            ivImage.setImageResource(R.mipmap.icon_android);
+            ivImage.setImageResource(R.mipmap.ic_android);
         }else  if (data.type.equals(CategoryType.IOS_STR)){
-            ivImage.setImageResource(R.mipmap.icon_apple);
+            ivImage.setImageResource(R.mipmap.ic_apple);
         }else  if (data.type.equals(CategoryType.QIAN_STR)){
             ivImage.setImageResource(R.mipmap.html);
         }

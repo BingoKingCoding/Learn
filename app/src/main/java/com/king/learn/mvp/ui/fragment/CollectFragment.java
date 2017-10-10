@@ -27,7 +27,7 @@ import butterknife.BindView;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 /**
- * <请描述这个类是干什么的>
+ * <收藏父页面>
  * Created by wwb on 2017/9/20 16:13.
  */
 

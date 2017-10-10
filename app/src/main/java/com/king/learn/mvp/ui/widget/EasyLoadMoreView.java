@@ -13,7 +13,7 @@ public class EasyLoadMoreView extends LoadMoreView
     @Override
     public int getLayoutId()
     {
-        return R.layout.base_load_more;
+        return R.layout.layout_base_load_more;
     }
 
     @Override
