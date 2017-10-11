@@ -3,9 +3,11 @@ package com.king.learn.app.base;
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.mvp.IPresenter;
 import com.jess.arms.utils.ArmsUtils;
+import com.king.learn.R;
 
 /**
  */
@@ -18,6 +20,15 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
      */
     protected boolean mIsExitApp = false;
     protected long mExitTime = 0;
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+
+    }
 
     /**
      * 子类可以直接用
@@ -65,11 +76,38 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
         }
         mExitTime = System.currentTimeMillis();
     }
-
-    protected void showLoadingDialog(){
+    protected MaterialDialog mProgressDialog;
+    public void showProgress(boolean flag, String message){
+        if (mProgressDialog == null) {
+            mProgressDialog = new MaterialDialog.Builder(this)
+                    .title(R.string.progress_dialog)
+                    .content(message)
+                    .progress(true, 0).build();
+            mProgressDialog.setCancelable(flag);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+        }
+        mProgressDialog.show();
     }
 
-    protected void hideLoadingDialog(){
+    public void showProgress(String message) {
+        showProgress(true, message);
+    }
+
+    public void showProgress() {
+        showProgress(true);
+    }
+
+    public void showProgress(boolean flag) {
+        showProgress(flag, "");
+    }
+
+    public void hideProgress(){
+        if (mProgressDialog == null)
+            return;
+
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
 }

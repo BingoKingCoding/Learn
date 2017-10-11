@@ -12,12 +12,17 @@
     <!-- Customize your theme here. -->
         //沉浸状态栏
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
         //可以让appbarlayout从最顶上开始，状态栏会覆盖toolbar
 
         //ActionBarDrawerToggle设置颜色
         <item name="colorControlNormal">@android:color/white</item>
         <item name="android:windowAnimationStyle">@style/AnimaActivity</item>
+    </style>
+    <style name="FullScreenTheme" parent="AppTheme">
+        //沉浸状态栏
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="AnimaActivity">
         <item name="android:activityOpenEnterAnimation">@anim/translate_right_to_center</item>
@@ -28,4 +33,23 @@
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/f6</item>
     </style>
+
+    <!--个人中心linearylayout-->
+    <style name="linear_user_center">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/ripple_item_white_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/m18</item>
+        <item name="android:paddingRight">@dimen/m18</item>
+    </style>
+
+    <style name="text_user_center" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/m18</item>
+        <item name="android:paddingRight">@dimen/m18</item>
+    </style>
+
 </resources>

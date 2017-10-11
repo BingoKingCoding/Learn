@@ -33,6 +33,7 @@
     <dimen name="m16">16dp</dimen>
     <dimen name="m18">18dp</dimen>
     <dimen name="m20">20dp</dimen>
+    <dimen name="m30">30dp</dimen>
 
     <!--corners-->
     <dimen name="r2">2dp</dimen>
@@ -51,7 +52,7 @@
     <dimen name="height_icon_l">36dp</dimen>
     <dimen name="height_icon_xl">52dp</dimen>
 
-    <dimen name="height_heard_portrait">96dp</dimen>
-    <dimen name="width_heard_portrait">96dp</dimen>
+    <dimen name="height_heard_portrait">60dp</dimen>
+    <dimen name="width_heard_portrait">60dp</dimen>
 
 </resources>

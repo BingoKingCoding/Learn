@@ -5,5 +5,11 @@
     <string name="title_favourite">收藏</string>
     <string name="title_mecenter">我的</string>
     <string name="progress_dialog"></string>
-    <string name="please_wait">加载中。。。</string>
+    <string name="please_wait">努力加载中。。。</string>
+    <string name="signature">我与世界只差一个你</string>
+    <string name="zxing">二维码</string>
+    <string name="title_activity_constellation">星座运势</string>
+    <string name="calendar">日历</string>
+    <string name="title_activity_china_calendar">老黄历</string>
+    <string name="title_activity_setting">设置</string>
 </resources>

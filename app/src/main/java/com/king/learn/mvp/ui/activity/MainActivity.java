@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
 import com.king.learn.R;
 import com.king.learn.app.base.DDBaseActivity;
+import com.king.learn.app.utils.DDViewUtil;
 import com.king.learn.app.utils.FragmentUtils;
 import com.king.learn.di.component.DaggerMainComponent;
 import com.king.learn.di.module.MainModule;
@@ -38,6 +40,8 @@ import static com.king.learn.app.EventBusTags.ACTIVITY_FRAGMENT_REPLACE;
 
 public class MainActivity extends DDBaseActivity<MainPresenter> implements MainContract.View
 {
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
     @BindView(R.id.bottomBar)
@@ -51,6 +55,7 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
 
     private OnTabSelectListener mOnTabSelectListener = tabId ->
     {
+        DDViewUtil.setVisible(mToolbar);
         switch (tabId)
         {
             case R.id.tab_home:
@@ -64,6 +69,7 @@ public class MainActivity extends DDBaseActivity<MainPresenter> implements MainC
                 break;
             case R.id.tab_mycenter:
                 mReplace = 3;
+                DDViewUtil.setGone(mToolbar);
                 break;
         }
         mToolbarTitle.setText(mTitles.get(mReplace));

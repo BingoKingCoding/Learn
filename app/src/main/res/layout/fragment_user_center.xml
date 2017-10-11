@@ -2,67 +2,79 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="240dp">
 
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <ImageView
+            android:id="@+id/iv_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_bg1"
+            app:layout_collapseMode="parallax"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/m20"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="@dimen/height_heard_portrait"
+                android:layout_height="@dimen/height_heard_portrait"
+                android:scaleType="center"
+                android:src="@drawable/ic_avatar"
+                app:riv_corner_radius="30dip"
+                app:riv_mutate_background="true"
+                app:riv_oval="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m5"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/space"
+            android:layout_marginBottom="@dimen/m20"
+            android:layout_marginLeft="@dimen/m30"
+            android:text="@string/signature"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"/>
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/m1"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:src="@drawable/nav_header_bg"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"/>
+    <include layout="@layout/layout_usercenter"/>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <com.makeramen.roundedimageview.RoundedImageView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="@dimen/height_heard_portrait"
-        android:layout_height="@dimen/height_heard_portrait"
-        android:layout_margin="@dimen/m15"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_avatar"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|center"
-        app:riv_corner_radius="30dip"
-        app:riv_mutate_background="true"
-        app:riv_oval="true"
-        app:riv_tile_mode="repeat"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/m16"
+        app:fabSize="mini"
+        app:layout_anchor="@id/iv_bg"
+        app:layout_anchorGravity="right|bottom"
+        app:srcCompat="@drawable/ic_edit"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

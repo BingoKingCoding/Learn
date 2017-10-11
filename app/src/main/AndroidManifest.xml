@@ -34,6 +34,7 @@
         android:theme="@style/MyAppTheme">
         <activity
             android:name=".mvp.ui.activity.SplashActivity"
+            android:theme="@style/FullScreenTheme"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -46,12 +47,15 @@
             android:name="com.king.learn.app.GlobalConfiguration"
             android:value="ConfigModule"/>
 
-        <activity android:name=".mvp.ui.activity.DetailActivity">
+        <activity android:name=".mvp.ui.activity.DetailActivity"
+                  android:theme="@style/FullScreenTheme">
         </activity>
-        <activity android:name=".mvp.ui.activity.PhotoViewActivity">
+        <activity android:name=".mvp.ui.activity.PhotoViewActivity"
+                  android:theme="@style/FullScreenTheme">
         </activity>
         <activity
             android:name=".mvp.ui.activity.MainActivity"
+            android:theme="@style/FullScreenTheme"
             android:launchMode="singleTask">
         </activity>
     </application>

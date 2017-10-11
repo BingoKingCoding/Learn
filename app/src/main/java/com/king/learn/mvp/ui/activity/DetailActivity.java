@@ -117,13 +117,13 @@ public class DetailActivity extends DDBaseActivity<DetailPresenter> implements D
     @Override
     public void showLoading()
     {
-        showLoadingDialog();
+        showProgress();
     }
 
     @Override
     public void hideLoading()
     {
-        hideLoadingDialog();
+        hideProgress();
     }
 
     @Override

@@ -28,6 +28,9 @@ public abstract class BaseFragment<P extends IPresenter> extends RxFragment impl
     @Inject
     protected P mPresenter;
 
+    private DDBaseActivity mActivity;
+
+
     public BaseFragment()
     {
         //必须确保在Fragment实例化时setArguments()
@@ -168,4 +171,57 @@ public abstract class BaseFragment<P extends IPresenter> extends RxFragment impl
     protected boolean isFragmentVisible() {
         return isFragmentVisible;
     }
+
+
+    /**
+     * 获取当前Fragment状态
+     *
+     * @return true为正常 false为未加载或正在删除
+     */
+    private boolean getStatus() {
+        return (isAdded() && !isRemoving());
+    }
+
+    /**
+     * 获取Activity
+     *
+     * @return
+     */
+    public DDBaseActivity getBaseActivity() {
+        if (mActivity == null) {
+            mActivity = (DDBaseActivity) getActivity();
+        }
+        return mActivity;
+    }
+
+
+    public void showProgress(boolean flag, String message) {
+        if (getStatus()) {
+            DDBaseActivity activity = getBaseActivity();
+            if (activity != null) {
+                activity.showProgress(flag, message);
+            }
+        }
+    }
+
+    public void showProgress(String message) {
+        showProgress(true, message);
+    }
+    public void showProgress() {
+        showProgress(true);
+    }
+    public void showProgress(boolean flag) {
+        showProgress(flag, "");
+    }
+
+    public void hideProgress() {
+        if (getStatus()) {
+            DDBaseActivity activity = getBaseActivity();
+            if (activity != null) {
+                activity.hideProgress();
+            }
+        }
+    }
+
+
 }

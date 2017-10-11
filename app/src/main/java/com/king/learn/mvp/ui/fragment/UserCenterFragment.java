@@ -21,7 +21,6 @@ import com.king.learn.mvp.presenter.UserCenterPresenter;
 
 public class UserCenterFragment extends BaseFragment<UserCenterPresenter> implements UserCenterContract.View
 {
-
     public static UserCenterFragment newInstance() {
         UserCenterFragment fragment = new UserCenterFragment();
         return fragment;
@@ -46,7 +45,12 @@ public class UserCenterFragment extends BaseFragment<UserCenterPresenter> implem
     @Override
     public void initData(Bundle savedInstanceState)
     {
+    }
 
+    @Override
+    protected void onFragmentFirstVisible()
+    {
+        super.onFragmentFirstVisible();
     }
 
     @Override
