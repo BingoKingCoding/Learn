@@ -78,7 +78,7 @@ public class OkHttpDownloader
             @Override
             public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException
             {
-                DDFileUtil.createADImageDir();
+//                DDFileUtil.createADImageDir();
                 String url = response.request().url().toString();
                 int index = url.lastIndexOf("/");
                 String pictureName = url.substring(index+1);
@@ -86,7 +86,7 @@ public class OkHttpDownloader
                     return;
                 }
                 Timber.i("pictureName="+pictureName);
-                FileOutputStream fos = new FileOutputStream(DDFileUtil.createFile(pictureName));
+                FileOutputStream fos = new FileOutputStream(DDFileUtil.createADImageFile(pictureName));
                 InputStream in = response.body().byteStream();
                 byte[] buf = new byte[1024];
                 int len = 0;

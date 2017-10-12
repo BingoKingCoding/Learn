@@ -30,7 +30,7 @@ public class DDFileUtil
     public static final String IMAGE_CACHE_DIR = "image";
     private static final String AD_IMAGE_CACHE_DIR = "adimages";
     private static Context context = Utils.getApp();
-    public static final String ADPATH = getADImageCacheDir().getAbsolutePath();
+
     /**
      * sd卡是否存在
      *
@@ -74,55 +74,13 @@ public class DDFileUtil
     }
 
     /**
-     *
-     * @param path
      * @return
      */
     public static boolean isADimageExist(String paramString)
     {
-        if (paramString == null)
-            return false;
-        File localFile = new File(ADPATH + "/" + paramString);
-        if (localFile.exists())
-        {
-            return true;
-        }
-        return false;
+        return isFileExist(getADImageCacheDir().getAbsolutePath() + "/" + paramString);
     }
 
-    /**
-     * 获得缓存目录
-     *
-     * @param context
-     * @param dirName 缓存目录下的文件夹名字
-     * @return
-     */
-    public static File getCacheDir(Context context, String dirName)
-    {
-        File result;
-        if (isSdcardExist())
-        {
-            File cacheDir = context.getExternalCacheDir();
-            if (cacheDir == null)
-            {
-                result = new File(Environment.getExternalStorageDirectory(),
-                        "Android/data/" + context.getPackageName() + "/cache/" + dirName);
-            } else
-            {
-                result = new File(cacheDir, dirName);
-            }
-        } else
-        {
-            result = new File(context.getCacheDir(), dirName);
-        }
-        if (result.exists() || result.mkdirs())
-        {
-            return result;
-        } else
-        {
-            return null;
-        }
-    }
 
     /**
      * 获得公共的相册目录
@@ -352,11 +310,11 @@ public class DDFileUtil
         }
     }
 
-    public static void copyAnrToCache(Context context)
+    public static void copyAnrToCache()
     {
         try
         {
-            File saveDir = getCacheDir(context, "anr");
+            File saveDir = getCacheDirectory("anr");
             if (saveDir == null)
             {
                 return;
@@ -388,59 +346,74 @@ public class DDFileUtil
 
     /**
      * 获取SD卡缓存目录
+     *
      * @param type 文件夹类型 如果为空则返回 /storage/emulated/0/Android/data/app_package_name/cache
      *             否则返回对应类型的文件夹如Environment.DIRECTORY_PICTURES 对应的文件夹为 .../data/app_package_name/files/Pictures
-     * {@link android.os.Environment#DIRECTORY_MUSIC},
-     * {@link android.os.Environment#DIRECTORY_PODCASTS},
-     * {@link android.os.Environment#DIRECTORY_RINGTONES},
-     * {@link android.os.Environment#DIRECTORY_ALARMS},
-     * {@link android.os.Environment#DIRECTORY_NOTIFICATIONS},
-     * {@link android.os.Environment#DIRECTORY_PICTURES}, or
-     * {@link android.os.Environment#DIRECTORY_MOVIES}.or 自定义文件夹名称
+     *             {@link android.os.Environment#DIRECTORY_MUSIC},
+     *             {@link android.os.Environment#DIRECTORY_PODCASTS},
+     *             {@link android.os.Environment#DIRECTORY_RINGTONES},
+     *             {@link android.os.Environment#DIRECTORY_ALARMS},
+     *             {@link android.os.Environment#DIRECTORY_NOTIFICATIONS},
+     *             {@link android.os.Environment#DIRECTORY_PICTURES}, or
+     *             {@link android.os.Environment#DIRECTORY_MOVIES}.or 自定义文件夹名称
      * @return 缓存目录文件夹 或 null（无SD卡或SD卡挂载失败）
      */
-    public static File getExternalCacheDirectory(String type) {
+    public static File getExternalCacheDirectory(String type)
+    {
         File appCacheDir = null;
-        if( Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            if (TextUtils.isEmpty(type)){
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
+        {
+            if (TextUtils.isEmpty(type))
+            {
                 appCacheDir = context.getExternalCacheDir();
-            }else {
+            } else
+            {
                 appCacheDir = context.getExternalFilesDir(type);
             }
 
-            if (appCacheDir == null){// 有些手机需要通过自定义目录
-                appCacheDir = new File(Environment.getExternalStorageDirectory(),"Android/data/"+context.getPackageName()+"/cache/"+type);
+            if (appCacheDir == null)
+            {// 有些手机需要通过自定义目录
+                appCacheDir = new File(Environment.getExternalStorageDirectory(), "Android/data/" + context.getPackageName() + "/cache/" + type);
             }
 
-            if (appCacheDir == null){
-                Log.e("getExternalDirectory","getExternalDirectory fail ,the reason is sdCard unknown exception !");
-            }else {
-                if (!appCacheDir.exists()&&!appCacheDir.mkdirs()){
-                    Log.e("getExternalDirectory","getExternalDirectory fail ,the reason is make directory fail !");
+            if (appCacheDir == null)
+            {
+                Log.e("getExternalDirectory", "getExternalDirectory fail ,the reason is sdCard unknown exception !");
+            } else
+            {
+                if (!appCacheDir.exists() && !appCacheDir.mkdirs())
+                {
+                    Log.e("getExternalDirectory", "getExternalDirectory fail ,the reason is make directory fail !");
                 }
             }
-        }else {
-            Log.e("getExternalDirectory","getExternalDirectory fail ,the reason is sdCard nonexistence or sdCard mount fail !");
+        } else
+        {
+            Log.e("getExternalDirectory", "getExternalDirectory fail ,the reason is sdCard nonexistence or sdCard mount fail !");
         }
         return appCacheDir;
     }
 
     /**
      * 获取内存缓存目录
+     *
      * @param type 子目录，可以为空，为空直接返回一级目录
      * @return 缓存目录文件夹 或 null（创建目录文件失败）
      * 注：该方法获取的目录是能供当前应用自己使用，外部应用没有读写权限，如 系统相机应用
      */
-    public static File getInternalCacheDirectory(String type) {
+    public static File getInternalCacheDirectory(String type)
+    {
         File appCacheDir = null;
-        if (TextUtils.isEmpty(type)){
+        if (TextUtils.isEmpty(type))
+        {
             appCacheDir = context.getCacheDir();// /data/data/app_package_name/cache
-        }else {
-            appCacheDir = new File(context.getFilesDir(),type);// /data/data/app_package_name/files/type
+        } else
+        {
+            appCacheDir = new File(context.getFilesDir(), type);// /data/data/app_package_name/files/type
         }
 
-        if (!appCacheDir.exists()&&!appCacheDir.mkdirs()){
-            Log.e("getInternalDirectory","getInternalDirectory fail ,the reason is make directory fail !");
+        if (!appCacheDir.exists() && !appCacheDir.mkdirs())
+        {
+            Log.e("getInternalDirectory", "getInternalDirectory fail ,the reason is make directory fail !");
         }
         return appCacheDir;
     }
@@ -449,57 +422,71 @@ public class DDFileUtil
      * 获取应用专属缓存目录
      * android 4.4及以上系统不需要申请SD卡读写权限
      * 因此也不用考虑6.0系统动态申请SD卡读写权限问题，切随应用被卸载后自动清空 不会污染用户存储空间
+     *
      * @param type 文件夹类型 可以为空，为空则返回API得到的一级目录
      * @return 缓存文件夹 如果没有SD卡或SD卡有问题则返回内存缓存目录，否则优先返回SD卡缓存目录
      */
-    public static File getCacheDirectory(String type) {
+    public static File getCacheDirectory(String type)
+    {
         File appCacheDir = getExternalCacheDirectory(type);
-        if (appCacheDir == null){
+        if (appCacheDir == null)
+        {
             appCacheDir = getInternalCacheDirectory(type);
         }
 
-        if (appCacheDir == null){
-            Log.e("getCacheDirectory","getCacheDirectory fail ,the reason is mobile phone unknown exception !");
-        }else {
-            if (!appCacheDir.exists()&&!appCacheDir.mkdirs()){
-                Log.e("getCacheDirectory","getCacheDirectory fail ,the reason is make directory fail !");
+        if (appCacheDir == null)
+        {
+            Log.e("getCacheDirectory", "getCacheDirectory fail ,the reason is mobile phone unknown exception !");
+        } else
+        {
+            if (!appCacheDir.exists() && !appCacheDir.mkdirs())
+            {
+                Log.e("getCacheDirectory", "getCacheDirectory fail ,the reason is make directory fail !");
             }
         }
         return appCacheDir;
     }
 
+    public static File getImageCacheDir()
+    {
+        return getCacheDirectory(IMAGE_CACHE_DIR);
+    }
+
+    public static File creatImageCache(String fileName)
+    {
+        File dir = new File(getImageCacheDir().getAbsolutePath());
+        if (!dir.exists())
+        {
+            boolean create = dir.mkdirs();
+            Timber.d("create = " + create);
+        }
+        return new File(getImageCacheDir(), fileName);
+    }
 
     public static File getADImageCacheDir()
     {
         return getCacheDirectory(AD_IMAGE_CACHE_DIR);
     }
 
-    public static void createADImageDir()
+
+    public static File createADImageFile(String fileName) throws IOException
     {
-        File file = new File(ADPATH);
-        if (!file.exists())
+        File dir = new File(getADImageCacheDir().getAbsolutePath());
+        if (!dir.exists())
         {
-            boolean create = file.mkdirs();
+            boolean create = dir.mkdirs();
             Timber.d("create = " + create);
-        } else
-        {
-            if (!file.isDirectory())
-            {
-                file.delete();
-                file.mkdir();
-            }
         }
-    }
-    public static File createFile(String fileName) throws IOException
-    {
-        File file = new File(ADPATH, fileName);
-        file.createNewFile();
-        return file;
+        return new File(getADImageCacheDir().getAbsolutePath(), fileName);
     }
 
+    /**
+     * @param
+     * @Description 得到 adimages 文件夹下的所有文件
+     */
     public static List<String> getAllAD()
     {
-        File file = new File(ADPATH);
+        File file = new File(getADImageCacheDir().getAbsolutePath());
         File[] fileList = file.listFiles();
         List<String> list = new ArrayList<>();
         if (null != fileList)

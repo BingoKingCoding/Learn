@@ -2,6 +2,7 @@ package com.king.learn.mvp.ui.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -19,7 +20,7 @@ import com.king.learn.R;
  * Created by wwb on 2017/10/11 10:23.
  */
 
-public class ClearEditText extends android.support.v7.widget.AppCompatEditText implements View.OnFocusChangeListener, TextWatcher
+public class ClearEditText extends TextInputEditText implements View.OnFocusChangeListener, TextWatcher
 {
     private Drawable mDrawable;
     private boolean mHasFocus;

@@ -21,15 +21,6 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
     protected boolean mIsExitApp = false;
     protected long mExitTime = 0;
 
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-
-
-    }
-
     /**
      * 子类可以直接用
      *

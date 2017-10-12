@@ -12,4 +12,27 @@
     <string name="calendar">日历</string>
     <string name="title_activity_china_calendar">老黄历</string>
     <string name="title_activity_setting">设置</string>
+    <string name="transition_userhead">transition_userhead</string>
+    <string name="name">姓名</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="yourSay">一句话描述</string>
+    <string name="save">保存</string>
+    <string name="address">居住地</string>
+    <string name="editPersonInfo">编辑个人信息</string>
+
+    <string-array name="arrays_constellation">
+        <item>水瓶座</item>
+        <item>双鱼座</item>
+        <item>白羊座</item>
+        <item>金牛座</item>
+        <item>双子座</item>
+        <item>巨蟹座</item>
+        <item>狮子座</item>
+        <item>处女座</item>
+        <item>天秤座</item>
+        <item>天蝎座</item>
+        <item>射手座</item>
+        <item>摩羯座</item>
+    </string-array>
 </resources>

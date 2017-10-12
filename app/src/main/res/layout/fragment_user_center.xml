@@ -29,14 +29,12 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <com.makeramen.roundedimageview.RoundedImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_userhead_me"
                 android:layout_width="@dimen/height_heard_portrait"
                 android:layout_height="@dimen/height_heard_portrait"
-                android:scaleType="center"
                 android:src="@drawable/ic_avatar"
-                app:riv_corner_radius="30dip"
-                app:riv_mutate_background="true"
-                app:riv_oval="true"/>
+                android:transitionName="@string/transition_userhead"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

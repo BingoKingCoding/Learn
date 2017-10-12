@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AnimaActivity</item>
     </style>
 
     <style name="MyAppTheme" parent="AppTheme">
@@ -13,11 +14,6 @@
         //沉浸状态栏
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">false</item>
-        //可以让appbarlayout从最顶上开始，状态栏会覆盖toolbar
-
-        //ActionBarDrawerToggle设置颜色
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="android:windowAnimationStyle">@style/AnimaActivity</item>
     </style>
     <style name="FullScreenTheme" parent="AppTheme">
         //沉浸状态栏
