@@ -363,13 +363,13 @@ public class DDFileUtil
         File appCacheDir = null;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
         {
-            if (TextUtils.isEmpty(type))
-            {
-                appCacheDir = context.getExternalCacheDir();
-            } else
-            {
-                appCacheDir = context.getExternalFilesDir(type);
-            }
+//            if (TextUtils.isEmpty(type))
+//            {
+//                appCacheDir = context.getExternalCacheDir();
+//            } else
+//            {
+//                appCacheDir = context.getExternalFilesDir(type);
+//            }
 
             if (appCacheDir == null)
             {// 有些手机需要通过自定义目录
@@ -447,11 +447,19 @@ public class DDFileUtil
         return appCacheDir;
     }
 
+
+    /**
+     * @param
+     * @Description 获得图片缓存的文件夹
+     */
     public static File getImageCacheDir()
     {
         return getCacheDirectory(IMAGE_CACHE_DIR);
     }
-
+    /**
+     * @param
+     * @Description 创建image文件缓存
+     */
     public static File creatImageCache(String fileName)
     {
         File dir = new File(getImageCacheDir().getAbsolutePath());
@@ -467,7 +475,6 @@ public class DDFileUtil
     {
         return getCacheDirectory(AD_IMAGE_CACHE_DIR);
     }
-
 
     public static File createADImageFile(String fileName) throws IOException
     {

@@ -17,6 +17,7 @@ import com.king.learn.di.module.PhotoViewModule;
 import com.king.learn.mvp.contract.PhotoViewContract;
 import com.king.learn.mvp.presenter.PhotoViewPresenter;
 import com.king.learn.mvp.ui.adapter.PhotoViewPageAdapter;
+import com.king.learn.mvp.ui.widget.PhotoViewPager;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class PhotoViewActivity extends BaseActivity<PhotoViewPresenter> implemen
 
 
     @BindView(R.id.viewPager)
-    ViewPager mViewPager;
+    PhotoViewPager mViewPager;
     @BindView(R.id.tv_page)
     TextView tv_page;//当前图片位置
     @BindView(R.id.iv_down_load)
