@@ -17,6 +17,7 @@ import com.king.learn.di.module.UserCenterModule;
 import com.king.learn.mvp.contract.UserCenterContract;
 import com.king.learn.mvp.presenter.UserCenterPresenter;
 import com.king.learn.mvp.ui.activity.UserInfoActivity;
+import com.king.learn.mvp.ui.activity.WebViewActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -121,6 +122,7 @@ public class UserCenterFragment extends BaseFragment<UserCenterPresenter> implem
                 break;
             case R.id.setting_me:
 //                startActivity(new Intent(getContext(), SettingActivity.class));
+                WebViewActivity.loadUrl(getActivity(),"https://github.com/JessYanCoding/MVPArms/wiki","github");
                 break;
             case R.id.fab:
                 Intent intent = new Intent(getContext(), UserInfoActivity.class);

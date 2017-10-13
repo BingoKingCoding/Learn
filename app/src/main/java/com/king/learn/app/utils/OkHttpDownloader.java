@@ -61,7 +61,7 @@ public class OkHttpDownloader
                 String url = response.request().url().toString();
                 int index = url.lastIndexOf("/");
                 String pictureName = url.substring(index+1);
-                File file = DDFileUtil.creatImageCache(pictureName);
+                File file = DDFileUtil.creatDownloadImageFile(pictureName);
                 FileOutputStream fos = new FileOutputStream(file);
                 InputStream in = response.body().byteStream();
                 byte[] buf = new byte[1024];

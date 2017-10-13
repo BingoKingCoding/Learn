@@ -35,4 +35,8 @@
         <item>射手座</item>
         <item>摩羯座</item>
     </string-array>
+    <string name="action_share">分享</string>
+    <string name="actionbar_webview_share">分享到</string>
+    <string name="actionbar_webview_cope">复制链接</string>
+    <string name="actionbar_webview_open">打开链接</string>
 </resources>
