@@ -226,9 +226,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             @Override
             public void onAnimationEnd(Animator animation)
             {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                startMainOrLogin();
             }
 
             @Override
@@ -261,5 +259,28 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    private void startMainOrLogin(){
+//        UserEntity user = UserModelDao.query();
+//        if (user != null)
+//        {
+//            startMainActivity();
+//        } else
+//        {
+//            startLoginActivity();
+//        }
+    }
+
+    private void startMainActivity(){
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startLoginActivity(){
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
