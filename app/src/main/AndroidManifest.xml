@@ -33,7 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
         <activity
-            android:name=".mvp.ui.activity.SplashActivity"
+            android:name=".mvp.ui.activity.MainActivity"
             android:theme="@style/FullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -55,8 +55,7 @@
             android:theme="@style/FullScreenTheme">
         </activity>
         <activity
-            android:name=".mvp.ui.activity.MainActivity"
-            android:launchMode="singleTask"
+            android:name=".mvp.ui.activity.SplashActivity"
             android:theme="@style/FullScreenTheme">
         </activity>
         <activity android:name=".mvp.ui.activity.UserInfoActivity">

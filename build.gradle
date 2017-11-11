@@ -31,10 +31,10 @@ task clean(type: Delete) {
 }
 ext{
     compileSdkVersion =26
-    buildToolsVersion ="26.0.1"
+    buildToolsVersion ="26.0.2"
     minSdkVersion =19
     targetSdkVersion=21
     versionCode =135
     versionName ="2.2.0"
-    androidSupportSdkVersion = "26.0.1"
+    androidSupportSdkVersion = "26.0.2"
 }

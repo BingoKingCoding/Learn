@@ -101,4 +101,14 @@ public abstract class DDBaseActivity<P extends IPresenter> extends BaseActivity<
         }
     }
 
+
+//    public Observable<Object> clicks(int viewId) {
+//        return clicks(findViewById(viewId));
+//    }
+//
+//    public Observable<Object> clicks(View view) {
+//        return RxView.clicks(view).throttleFirst(500, TimeUnit.MILLISECONDS).compose(bindToLifecycle());
+//    }
+
+
 }
